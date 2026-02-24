@@ -1,0 +1,25 @@
+{
+  "name": "task-manager-apis",
+  "version": "1.0.0",
+  "description": "APIs for Task manager app",
+  "license": "ISC",
+  "author": "Supratik Ray",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx tsx watch ./src/server.ts"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.2",
+    "dotenv": "^17.3.1",
+    "drizzle-orm": "^0.45.1",
+    "express": "^5.2.1",
+    "typescript": "^5.9.3",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "drizzle-kit": "^0.31.9",
+    "tsx": "^4.21.0"
+  }
+}
