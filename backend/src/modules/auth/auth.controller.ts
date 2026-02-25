@@ -4,7 +4,7 @@ import { sendResponse } from "../../utils/apiResponse.ts";
 
 export async function loginController(req: Request, res: Response) {
   const user = await login(req.body);
-  const token = createToken(user);
+  const token = createToken({ id: user.id });
   sendResponse({
     res,
     statusCode: 200,
@@ -15,7 +15,7 @@ export async function loginController(req: Request, res: Response) {
 
 export async function signupController(req: Request, res: Response) {
   const newUser = await signup(req.body);
-  const token = createToken(newUser);
+  const token = createToken({ id: newUser.id });
   sendResponse({
     res,
     statusCode: 201,
