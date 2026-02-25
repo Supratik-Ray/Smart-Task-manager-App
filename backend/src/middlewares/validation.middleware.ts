@@ -2,9 +2,21 @@ import { NextFunction, Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import { z } from "zod";
 
-export function validate(schema: z.ZodType) {
+export function validate(schema: z.ZodType, type: "body" | "params" | "query") {
   return (req: Request, res: Response, next: NextFunction) => {
-    const result = schema.safeParse(req.body);
+    let data;
+    if (type === "body") {
+      data = req.body;
+    }
+    if (type === "params") {
+      data = req.params;
+    }
+
+    if (type === "query") {
+      data = req.query;
+    }
+
+    const result = schema.safeParse(data);
 
     if (!result.success) {
       let errorObj: Record<string, string> = {};
