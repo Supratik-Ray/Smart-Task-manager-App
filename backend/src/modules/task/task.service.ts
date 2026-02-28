@@ -2,7 +2,10 @@ import { eq } from "drizzle-orm";
 import db from "../../config/db.ts";
 import { taskTable } from "../../db/schema/task.schema.ts";
 import { NotFoundError } from "../../errors/NotFoundError.ts";
-import { CreateTaskInput, UpdateTaskInput } from "./task.validation.ts";
+import {
+  CreateTaskInput,
+  UpdateTaskInput,
+} from "../../../shared/schemas/task.ts";
 import { InternalServerError } from "../../errors/InternalServerError.ts";
 import { BadRequestError } from "../../errors/BadRequestError.ts";
 

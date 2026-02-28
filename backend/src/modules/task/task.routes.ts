@@ -11,7 +11,7 @@ import {
   createTaskSchema,
   taskIdSchema,
   updateTaskSchema,
-} from "./task.validation.ts";
+} from "../../../shared/schemas/task.ts";
 
 const router = express.Router();
 
