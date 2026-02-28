@@ -12,6 +12,9 @@ import { AuthProvider } from "@/src/contexts/AuthContext";
 import { useAuth } from "@/src/hooks/useAuth";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+//toast
+import ToastManager, { Toast } from "toastify-react-native";
+
 import * as SplashScreen from "expo-splash-screen";
 import * as SystemUI from "expo-system-ui";
 import { useEffect } from "react";
@@ -24,10 +27,17 @@ configureReanimatedLogger({
   strict: false,
 });
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    mutations: {
+      onError: (error) => {
+        Toast.error(error.message);
+      },
+    },
+  },
+});
 
 function RootNavigator() {
-  // Move useAuth inside the function body so it always gets the latest context value
   const { isAuthenticated, isLoading } = useAuth();
 
   useEffect(() => {
@@ -77,6 +87,7 @@ export default function RootLayout() {
       <AuthProvider>
         <QueryClientProvider client={queryClient}>
           <RootNavigator />
+          <ToastManager />
         </QueryClientProvider>
       </AuthProvider>
     </GestureHandlerRootView>

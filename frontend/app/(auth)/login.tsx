@@ -10,14 +10,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const { mutate, isPending, error } = useLogin();
-
-  useEffect(() => {
-    if (error) {
-      const axiosError = error as AxiosError<{ message: string }>;
-      Alert.alert("Error logging in!", axiosError.response?.data?.message);
-    }
-  }, [error]);
+  const { mutate, isPending } = useLogin();
 
   return (
     <View className="flex-1 justify-center items-center bg-background px-8">
