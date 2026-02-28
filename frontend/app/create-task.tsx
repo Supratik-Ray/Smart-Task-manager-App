@@ -1,5 +1,5 @@
-import PrimaryButton from "@/components/PrimaryButton";
-import RadioButtonGroup from "@/components/RadioButtonGroup";
+import PrimaryButton from "@/src/components/PrimaryButton";
+import RadioButtonGroup from "@/src/components/RadioButtonGroup";
 import { useLayoutEffect, useState } from "react";
 import { View, Text, TextInput, Pressable } from "react-native";
 import DateTimePicker, {

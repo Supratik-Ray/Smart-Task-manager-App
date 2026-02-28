@@ -1,6 +1,6 @@
-import TaskCalender from "@/components/calender/TaskCalender";
-import SearchArea from "@/components/home/SearchArea";
-import TaskCard from "@/components/TaskCard";
+import TaskCalender from "@/src/components/calender/TaskCalender";
+import SearchArea from "@/src/components/home/SearchArea";
+import TaskCard from "@/src/components/TaskCard";
 import { View, FlatList } from "react-native";
 import { type Task } from "./index";
 import { useRouter } from "expo-router";
