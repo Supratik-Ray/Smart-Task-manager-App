@@ -1,7 +1,7 @@
 import { Pressable, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import SearchBar from "./SearchBar";
-import FilterButton from "../FilterButton";
+import FilterButton from "../UI/FilterButton";
 
 export default function SearchArea({
   onOpenFilters,

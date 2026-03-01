@@ -9,6 +9,7 @@ import { StatusCodes } from "http-status-codes";
 import jwt from "jsonwebtoken";
 import env from "../../config/env.ts";
 import { UserPayload } from "../../types/auth.types.ts";
+import { NotFoundError } from "../../errors/NotFoundError.ts";
 
 export async function login(data: LoginInput) {
   //check if user with this email exists
@@ -61,4 +62,19 @@ export function createToken(payload: UserPayload) {
   const secret = env.JWT_SECRET;
   const token = jwt.sign(payload, secret, { expiresIn: "7d" });
   return token;
+}
+
+export async function getUserInfo(userId: string) {
+  const user = await db.query.userTable.findFirst({
+    where: eq(userTable.id, userId),
+    columns: {
+      id: true,
+      name: true,
+      email: true,
+    },
+  });
+
+  if (!user) throw new NotFoundError("User not found");
+
+  return user;
 }

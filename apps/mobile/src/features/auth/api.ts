@@ -1,3 +1,4 @@
+import { UserInfoResponse } from "./../../../../../packages/shared/types";
 import { AxiosResponse } from "axios";
 import {
   LoginInput,
@@ -13,4 +14,8 @@ export function loginRequest(data: LoginInput) {
 
 export function signupRequest(data: SignupInput) {
   return api.post<AuthResponse>("/auth/signup", data);
+}
+
+export function getUserInfo() {
+  return api.get<UserInfoResponse>("/auth/me");
 }

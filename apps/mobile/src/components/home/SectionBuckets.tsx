@@ -1,6 +1,6 @@
 import { View, Text, SectionList, RefreshControl } from "react-native";
 import React from "react";
-import TaskCard from "../TaskCard";
+import TaskCard from "../UI/TaskCard";
 import { useRouter } from "expo-router";
 import { HomeBuckets } from "@smart-task-manager/shared";
 import { useDeleteTask } from "@/src/features/tasks/mutations";

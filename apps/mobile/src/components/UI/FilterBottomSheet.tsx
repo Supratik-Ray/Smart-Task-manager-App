@@ -1,5 +1,5 @@
 import { View, Text } from "react-native";
-import { useRef, useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import RadioButtonGroup from "./RadioButtonGroup";
 import PrimaryButton from "./PrimaryButton";
 

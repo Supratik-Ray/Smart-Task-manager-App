@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { deleteAuthToken, getAuthToken, saveAuthToken } from "../utils/tokens";
 import { setAuthToken } from "../utils/authTokenStore";
+import { useMe } from "../features/auth/queries";
 
 type User = { id: string; name: string; email: string };
 
@@ -23,6 +24,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const isAuthenticated = !!token;
 
+  const { data, isLoading: fetchingUser, error } = useMe(isAuthenticated);
+
+  useEffect(() => {
+    if (fetchingUser || !data) return;
+    if (error) {
+      logout();
+      return;
+    }
+    const userInfo = data.data.data;
+    setUser(userInfo);
+  }, [data, fetchingUser, error]);
+
   useEffect(() => {
     const restoreSession = async () => {
       const storedToken = await getAuthToken();
@@ -30,13 +43,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       if (storedToken) {
         setToken(storedToken);
         setAuthToken(storedToken);
-        try {
-          // later: fetchMe()
-          setUser({ id: "one", name: "john", email: "john123@gmail.com" });
-        } catch {
-          //logout if expired token
-          logout();
-        }
       }
 
       setIsLoading(false);

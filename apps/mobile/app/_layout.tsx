@@ -88,12 +88,12 @@ function RootNavigator() {
 export default function RootLayout() {
   return (
     <GestureHandlerRootView className="flex-1">
-      <AuthProvider>
-        <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>
           <RootNavigator />
           <ToastManager />
-        </QueryClientProvider>
-      </AuthProvider>
+        </AuthProvider>
+      </QueryClientProvider>
     </GestureHandlerRootView>
   );
 }

@@ -10,7 +10,17 @@ export default function TodayProgressCard({
   total,
   completed,
 }: TodayProgressCardProps) {
-  const progressPercentage = Math.round(completed / total) * 100;
+  const progressPercentage =
+    total === 0 ? 0 : Math.round((completed / total) * 100);
+
+  const message =
+    progressPercentage === 100
+      ? "All tasks done! 🎉"
+      : progressPercentage >= 70
+        ? "Almost there! 🚀"
+        : progressPercentage >= 40
+          ? "Making progress 💪"
+          : "Let's get started ⚡";
   return (
     <View className="bg-background-card p-10 mt-8 rounded-2xl flex-row justify-between">
       <View>
@@ -25,7 +35,7 @@ export default function TodayProgressCard({
           <Text className="text-2xl text-text-secondary">{total}</Text>
         </View>
         <Text className="mt-4 text-text-secondary">Tasks completed</Text>
-        <Text className="mt-4 text-primary">You are almost there! 🚀</Text>
+        <Text className="mt-4 text-primary-light">{message}</Text>
       </View>
       <ProgressRing fill={progressPercentage} size={100} width={10} />
     </View>

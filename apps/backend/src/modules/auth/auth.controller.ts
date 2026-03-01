@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
-import { createToken, login, signup } from "./auth.service.ts";
+import { createToken, getUserInfo, login, signup } from "./auth.service.ts";
 import { sendResponse } from "../../utils/apiResponse.ts";
+import { StatusCodes } from "http-status-codes";
 
 export async function loginController(req: Request, res: Response) {
   const user = await login(req.body);
@@ -22,4 +23,9 @@ export async function signupController(req: Request, res: Response) {
     message: "Successfully created user!",
     data: { user: newUser, token },
   });
+}
+
+export async function getUserInfoController(req: Request, res: Response) {
+  const userInfo = await getUserInfo(req.user!.id);
+  sendResponse({ res, statusCode: StatusCodes.OK, data: userInfo });
 }

@@ -28,7 +28,7 @@ export type AuthResponse = ApiResponse<{
   user: User;
   token: string;
 }>;
-
+export type UserInfoResponse = ApiResponse<User>;
 export type AllTasksResponse = ApiResponse<Task[]>;
 export type TaskResponse = ApiResponse<Task>;
 export type HomeBuckets = ApiResponse<

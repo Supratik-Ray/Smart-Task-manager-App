@@ -4,6 +4,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 export default function TabsLayout() {
   return (
     <Tabs
+      initialRouteName="index"
       screenOptions={{
         headerShown: false,
         sceneStyle: { backgroundColor: "#0F172A" },
@@ -39,10 +40,10 @@ export default function TabsLayout() {
       />
 
       <Tabs.Screen
-        name="settings"
+        name="profile"
         options={{
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="settings" color={color} size={size} />
+            <Ionicons name="person" color={color} size={size} />
           ),
         }}
       />

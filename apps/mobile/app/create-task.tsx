@@ -1,5 +1,7 @@
-import PrimaryButton from "@/src/components/PrimaryButton";
-import RadioButtonGroup from "@/src/components/RadioButtonGroup";
+// eslint-disable-next-line import/no-unresolved
+import PrimaryButton from "@/src/components/UI/PrimaryButton";
+// eslint-disable-next-line import/no-unresolved
+import RadioButtonGroup from "@/src/components/UI/RadioButtonGroup";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { View, Text, TextInput, Pressable } from "react-native";
 import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";

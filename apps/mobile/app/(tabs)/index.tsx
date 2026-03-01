@@ -1,5 +1,5 @@
-import FilterBottomSheet from "@/src/components/FilterBottomSheet";
-import FilterButton from "@/src/components/FilterButton";
+import FilterBottomSheet from "@/src/components/UI/FilterBottomSheet";
+import FilterButton from "@/src/components/UI/FilterButton";
 import ActionButton from "@/src/components/home/ActionButton";
 import SectionBuckets from "@/src/components/home/SectionBuckets";
 import TodayProgressCard from "@/src/components/home/TodayProgressCard";
@@ -49,7 +49,12 @@ export default function Index() {
     content = <LoadingState />;
   } else if (error || !data) {
     content = <ErrorState />;
-  } else if (!rawBuckets || rawBuckets.length === 0) {
+  } else if (
+    !rawBuckets ||
+    (rawBuckets[0].data.length === 0 &&
+      rawBuckets[1].data.length === 0 &&
+      rawBuckets[2].data.length === 0)
+  ) {
     content = <EmptyTasksState />;
   } else if (filteredBuckets.length === 0) {
     content = <EmptyFilterState />;
