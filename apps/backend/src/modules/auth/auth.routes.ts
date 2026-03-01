@@ -3,10 +3,10 @@ import {
   getUserInfoController,
   loginController,
   signupController,
-} from "./auth.controller.ts";
-import { validate } from "../../middlewares/validation.middleware.ts";
+} from "./auth.controller";
+import { validate } from "../../middlewares/validation.middleware";
 import { loginSchema, signupSchema } from "@smart-task-manager/shared";
-import { requireAuth } from "../../middlewares/auth.middleware.ts";
+import { requireAuth } from "../../middlewares/auth.middleware";
 
 const router = express.Router();
 

@@ -6,8 +6,8 @@ import {
   getHomeTaskBucketsController,
   getTaskController,
   updateTaskController,
-} from "./task.controller.ts";
-import { validate } from "../../middlewares/validation.middleware.ts";
+} from "./task.controller";
+import { validate } from "../../middlewares/validation.middleware";
 import {
   createTaskSchema,
   taskIdSchema,

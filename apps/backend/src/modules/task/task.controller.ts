@@ -6,9 +6,9 @@ import {
   getHomeTaskBuckets,
   getTask,
   updateTask,
-} from "./task.service.ts";
-import { AuthError } from "../../errors/AuthError.ts";
-import { sendResponse } from "../../utils/apiResponse.ts";
+} from "./task.service";
+import { AuthError } from "../../errors/AuthError";
+import { sendResponse } from "../../utils/apiResponse";
 import { StatusCodes } from "http-status-codes";
 
 export async function getAllTasksController(req: Request, res: Response) {

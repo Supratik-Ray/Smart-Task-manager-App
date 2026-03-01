@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
-import jwt, { JwtPayload } from "jsonwebtoken";
-import env from "../config/env.ts";
-import { AuthError } from "../errors/AuthError.ts";
-import { UserPayload } from "../types/auth.types.ts";
+import jwt from "jsonwebtoken";
+import env from "../config/env";
+import { AuthError } from "../errors/AuthError";
+import { UserPayload } from "../types/auth.types";
 
 export function requireAuth(req: Request, res: Response, next: NextFunction) {
   //check if Bearer token exists

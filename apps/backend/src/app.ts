@@ -1,8 +1,8 @@
 import express, { Request, Response } from "express";
-import { errorMiddleware } from "./middlewares/error.middleware.ts";
-import AuthRouter from "./modules/auth/auth.routes.ts";
-import TaskRouter from "./modules/task/task.routes.ts";
-import { requireAuth } from "./middlewares/auth.middleware.ts";
+import { errorMiddleware } from "./middlewares/error.middleware";
+import AuthRouter from "./modules/auth/auth.routes";
+import TaskRouter from "./modules/task/task.routes";
+import { requireAuth } from "./middlewares/auth.middleware";
 import cors from "cors";
 
 const app = express();

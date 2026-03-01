@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { createToken, getUserInfo, login, signup } from "./auth.service.ts";
-import { sendResponse } from "../../utils/apiResponse.ts";
+import { createToken, getUserInfo, login, signup } from "./auth.service";
+import { sendResponse } from "../../utils/apiResponse";
 import { StatusCodes } from "http-status-codes";
 
 export async function loginController(req: Request, res: Response) {

@@ -1,15 +1,15 @@
 import { eq } from "drizzle-orm";
-import db from "../../config/db.ts";
+import db from "../../config/db";
 import { LoginInput, SignupInput } from "@smart-task-manager/shared";
-import { userTable } from "../../db/schema/user.schema.ts";
-import { AuthError } from "../../errors/AuthError.ts";
+import { userTable } from "../../db/schema/user.schema";
+import { AuthError } from "../../errors/AuthError";
 import bcrypt from "bcryptjs";
-import { ApiError } from "../../errors/ApiError.ts";
+import { ApiError } from "../../errors/ApiError";
 import { StatusCodes } from "http-status-codes";
 import jwt from "jsonwebtoken";
-import env from "../../config/env.ts";
-import { UserPayload } from "../../types/auth.types.ts";
-import { NotFoundError } from "../../errors/NotFoundError.ts";
+import env from "../../config/env";
+import { UserPayload } from "../../types/auth.types";
+import { NotFoundError } from "../../errors/NotFoundError";
 
 export async function login(data: LoginInput) {
   //check if user with this email exists

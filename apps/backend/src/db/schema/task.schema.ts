@@ -6,7 +6,7 @@ import {
   uuid,
   varchar,
 } from "drizzle-orm/pg-core";
-import { userTable } from "./user.schema.ts";
+import { userTable } from "./user.schema";
 
 export const StatusEnum = pgEnum("status_enum", [
   "TODO",

@@ -1,6 +1,6 @@
-import db from "../config/db.ts";
-import { TaskPriority, TaskStatus } from "../types/task.types.ts";
-import { userTable, taskTable } from "./schema/index.ts";
+import db from "../config/db";
+import { TaskPriority, TaskStatus } from "../types/task.types";
+import { userTable, taskTable } from "./schema/index";
 import { hash } from "bcryptjs";
 
 function randomInt(min: number, max: number) {

@@ -1,3 +1,3 @@
-export * from "./user.schema.ts";
-export * from "./task.schema.ts";
-export * from "./relations.ts";
+export * from "./user.schema";
+export * from "./task.schema";
+export * from "./relations";

@@ -4,11 +4,11 @@
   "description": "APIs for Task manager app",
   "license": "ISC",
   "author": "Supratik Ray",
-  "type": "module",
+  "type": "commonjs",
   "main": "index.js",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
-    "start": "node -r tsconfig-paths/register dist/src/index.js",
+    "start": "nodemon dist/src/server.js",
     "dev": "npx tsx watch ./src/server.ts",
     "db:generate": "npx drizzle-kit generate",
     "db:migrate": "npx drizzle-kit migrate",
@@ -31,6 +31,7 @@
     "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.10",
     "drizzle-kit": "^0.31.9",
+    "nodemon": "^3.1.14",
     "tsx": "^4.21.0"
   }
 }

@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { ApiError } from "../errors/ApiError.ts";
+import { ApiError } from "../errors/ApiError";
 import { StatusCodes } from "http-status-codes";
 
 export function errorMiddleware(

@@ -1,10 +1,10 @@
 import { and, eq, gte, lt, ne } from "drizzle-orm";
-import db from "../../config/db.ts";
-import { SelectTask, taskTable } from "../../db/schema/task.schema.ts";
-import { NotFoundError } from "../../errors/NotFoundError.ts";
+import db from "../../config/db";
+import { SelectTask, taskTable } from "../../db/schema/task.schema";
+import { NotFoundError } from "../../errors/NotFoundError";
 import { CreateTaskData, UpdateTaskInput } from "@smart-task-manager/shared";
-import { InternalServerError } from "../../errors/InternalServerError.ts";
-import { BadRequestError } from "../../errors/BadRequestError.ts";
+import { InternalServerError } from "../../errors/InternalServerError";
+import { BadRequestError } from "../../errors/BadRequestError";
 
 export async function getAllTasks(userId: string, date?: string) {
   let tasks: SelectTask[];

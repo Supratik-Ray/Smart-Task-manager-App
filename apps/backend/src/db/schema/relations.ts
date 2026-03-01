@@ -1,6 +1,6 @@
 import { relations } from "drizzle-orm";
-import { userTable } from "./user.schema.ts";
-import { taskTable } from "./task.schema.ts";
+import { userTable } from "./user.schema";
+import { taskTable } from "./task.schema";
 
 export const usersRelations = relations(userTable, ({ many }) => ({
   tasks: many(taskTable),
