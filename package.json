@@ -1,0 +1,23 @@
+{
+  "name": "smart-task-manager-app",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:mobile": "npm run start -w apps/mobile",
+    "dev:backend": "npm run dev -w apps/backend",
+    "install:all": "npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Supratik-Ray/Smart-Task-manager-App.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Supratik-Ray/Smart-Task-manager-App/issues"
+  },
+  "homepage": "https://github.com/Supratik-Ray/Smart-Task-manager-App#readme"
+}
