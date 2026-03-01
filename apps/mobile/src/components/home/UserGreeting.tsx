@@ -7,11 +7,11 @@ export default function UserGreeting() {
   const { user } = useAuth();
   const router = useRouter();
   return (
-    <View className="flex-row justify-between">
+    <View className="flex-row justify-between items-center">
       <View>
-        <Text className="text-text-secondary">Good Morning,</Text>
-        <Text className="text-text-primary text-2xl font-semibold">
-          Hey {user?.name} 👋
+        {/* <Text className="text-text-secondary">Good Morning,</Text> */}
+        <Text className="text-text-primary text-xl font-semibold">
+          Hey, {user?.name.split(" ")[0]} 👋
         </Text>
       </View>
       <Pressable

@@ -1,7 +1,13 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { View, TextInput } from "react-native";
 
-export default function SearchBar({ placeholder }: { placeholder: string }) {
+export default function SearchBar({
+  placeholder,
+  onChangeText,
+}: {
+  placeholder: string;
+  onChangeText: (value: string) => void;
+}) {
   return (
     <View className="relative">
       <Ionicons
@@ -14,6 +20,7 @@ export default function SearchBar({ placeholder }: { placeholder: string }) {
         className="bg-background-card rounded-xl p-5 pl-12 text-white"
         placeholder={placeholder}
         placeholderTextColor="#9CA3AF"
+        onChangeText={(text) => onChangeText(text)}
       />
     </View>
   );

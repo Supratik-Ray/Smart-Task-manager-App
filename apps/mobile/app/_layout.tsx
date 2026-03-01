@@ -18,6 +18,7 @@ import ToastManager, { Toast } from "toastify-react-native";
 import * as SplashScreen from "expo-splash-screen";
 import * as SystemUI from "expo-system-ui";
 import { useEffect } from "react";
+import { isAxiosError } from "axios";
 
 SplashScreen.preventAutoHideAsync();
 SystemUI.setBackgroundColorAsync("#0F172A");
@@ -31,7 +32,11 @@ const queryClient = new QueryClient({
   defaultOptions: {
     mutations: {
       onError: (error) => {
-        Toast.error(error.message);
+        if (isAxiosError(error)) {
+          const message =
+            error.response?.data?.message ?? "Something went wrong";
+          Toast.error(message);
+        }
       },
     },
     queries: {

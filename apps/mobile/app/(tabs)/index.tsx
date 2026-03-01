@@ -46,7 +46,7 @@ export default function Index() {
   let content;
 
   if (isLoading || isRefetching) {
-    content = <LoadingState />;
+    content = <LoadingState message="Loading tasks..." />;
   } else if (error || !data) {
     content = <ErrorState />;
   } else if (
@@ -55,9 +55,14 @@ export default function Index() {
       rawBuckets[1].data.length === 0 &&
       rawBuckets[2].data.length === 0)
   ) {
-    content = <EmptyTasksState />;
+    content = (
+      <EmptyTasksState
+        title="No tasks yet"
+        message="Tap the + button to create your first task."
+      />
+    );
   } else if (filteredBuckets.length === 0) {
-    content = <EmptyFilterState />;
+    content = <EmptyFilterState message="Try adjusting your filters." />;
   } else {
     content = (
       <SectionBuckets

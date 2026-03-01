@@ -1,37 +1,33 @@
 import { NextFunction, Request, Response } from "express";
-import { StatusCodes } from "http-status-codes";
 import { z } from "zod";
+import { StatusCodes } from "http-status-codes";
 
-export function validate(schema: z.ZodType, type: "body" | "params" | "query") {
+export function validate<T>(
+  schema: z.ZodType<T>,
+  type: "body" | "params" | "query",
+) {
   return (req: Request, res: Response, next: NextFunction) => {
-    let data;
-    if (type === "body") {
-      data = req.body;
-    }
-    if (type === "params") {
-      data = req.params;
-    }
-
-    if (type === "query") {
-      data = req.query;
-    }
+    const data =
+      type === "body" ? req.body : type === "params" ? req.params : req.query;
 
     const result = schema.safeParse(data);
 
     if (!result.success) {
-      let errorObj: Record<string, string> = {};
-      result.error.issues.forEach((issue) => {
-        errorObj[issue.path[0] as string] = issue.message;
+      const errors = result.error.issues.map((issue) => {
+        const field = issue.path.join(".");
+        return field ? `${field} ${issue.message}` : issue.message;
       });
 
       return res.status(StatusCodes.BAD_REQUEST).json({
         success: false,
-        message: "Validation error!",
-        error: errorObj,
+        message: errors[0],
+        errors,
       });
     }
 
-    req.body = result.data;
+    if (type === "body") req.body = result.data;
+    if (type === "params") req.params = result.data as any;
+    if (type === "query") req.query = result.data as any;
 
     next();
   };
