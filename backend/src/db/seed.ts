@@ -1,15 +1,21 @@
 import db from "../config/db.ts";
 import { TaskPriority, TaskStatus } from "../types/task.types.ts";
 import { userTable, taskTable } from "./schema/index.ts";
-
 import { hash } from "bcryptjs";
 
+function randomInt(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function randomItem<T>(arr: T[]): T {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
 async function main() {
-  // Clean up previous seed
   await db.delete(taskTable);
   await db.delete(userTable);
 
-  // Create a user
+  // create user
   const password = await hash("password123", 10);
   const [user] = await db
     .insert(userTable)
@@ -20,63 +26,55 @@ async function main() {
     })
     .returning();
 
-  // Create some tasks for the user
-  const now = new Date();
-  // Generate 30 tasks with a mix of statuses, priorities, and due dates (some before, some today, some after)
   const priorities: TaskPriority[] = ["LOW", "MEDIUM", "HIGH"];
   const statuses: TaskStatus[] = ["TODO", "IN_PROGRESS", "COMPLETED"];
+
   const descriptions = [
-    "Resolve padding issue on smaller devices.",
-    "Replace placeholder icon with final version.",
-    "Implement date selection and marked dates.",
-    "Organize folders and create base components.",
-    "Install navigation, gesture handler and libs.",
-    "Write unit tests for task service.",
-    "Refactor authentication logic.",
-    "Update README documentation.",
-    "Fix bug in calendar sync.",
-    "Optimize database queries.",
-    "Design analytics dashboard.",
-    "Add user profile editing.",
-    "Improve error handling.",
-    "Set up CI/CD pipeline.",
-    "Integrate push notifications.",
-    "Polish UI for mobile.",
-    "Add dark mode support.",
-    "Review code for security.",
-    "Update dependencies.",
-    "Test on multiple devices.",
-    "Add onboarding screens.",
-    "Implement search feature.",
-    "Fix scroll performance.",
-    "Add recurring tasks.",
-    "Improve accessibility.",
-    "Add calendar export.",
-    "Implement reminders.",
-    "Add comments to tasks.",
-    "Enable multi-user support.",
-    "Polish animations.",
+    "Resolve layout bug",
+    "Improve performance",
+    "Refactor component",
+    "Write tests",
+    "Fix API issue",
+    "Add animations",
+    "Clean code",
+    "Update UI",
+    "Handle edge cases",
+    "Optimize query",
   ];
 
-  // Today at midnight
-  const today = new Date(now);
-  today.setHours(0, 0, 0, 0);
+  const now = new Date();
 
-  const tasks = Array.from({ length: 30 }).map((_, i) => {
-    // Spread due dates: 10 before today, 10 today, 10 after today
-    let dueDate;
-    if (i < 10) {
-      dueDate = new Date(today.getTime() - (10 - i) * 24 * 60 * 60 * 1000);
-    } else if (i < 20) {
-      dueDate = new Date(today);
+  const tasks = Array.from({ length: 60 }).map((_, i) => {
+    // random day offset from today (-20 → +20)
+    const dayOffset = randomInt(-20, 20);
+
+    const dueDate = new Date(now);
+    dueDate.setDate(now.getDate() + dayOffset);
+
+    // randomize time of day
+    dueDate.setHours(randomInt(0, 23), randomInt(0, 59), randomInt(0, 59), 0);
+
+    // realistic status logic
+    let status: TaskStatus;
+
+    if (dayOffset < 0) {
+      // past tasks mostly completed
+      status =
+        Math.random() < 0.7 ? "COMPLETED" : randomItem(["TODO", "IN_PROGRESS"]);
+    } else if (dayOffset === 0) {
+      // today tasks mixed
+      status = randomItem(statuses);
     } else {
-      dueDate = new Date(today.getTime() + (i - 19) * 24 * 60 * 60 * 1000);
+      // future tasks mostly todo
+      status =
+        Math.random() < 0.7 ? "TODO" : randomItem(["IN_PROGRESS", "COMPLETED"]);
     }
+
     return {
       name: `Task ${i + 1}`,
-      description: descriptions[i % descriptions.length],
-      status: statuses[i % statuses.length],
-      priority: priorities[i % priorities.length],
+      description: randomItem(descriptions),
+      status,
+      priority: randomItem(priorities),
       dueDate,
       userId: user.id,
     };
@@ -84,7 +82,7 @@ async function main() {
 
   await db.insert(taskTable).values(tasks);
 
-  console.log("Seed complete!");
+  console.log("🌱 Seed complete with realistic data!");
 }
 
 main().catch((err) => {

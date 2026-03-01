@@ -13,12 +13,12 @@ export function errorMiddleware(
   if (error instanceof ApiError) {
     return res.status(error.statusCode).json({
       success: false,
-      error: error.message,
+      message: error.message,
     });
   }
 
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
     success: false,
-    error: "Some error occured! Please try again later",
+    message: "Some error occured! Please try again later",
   });
 }

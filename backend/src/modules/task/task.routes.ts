@@ -3,6 +3,7 @@ import {
   createTaskController,
   deleteTaskController,
   getAllTasksController,
+  getHomeTaskBucketsController,
   getTaskController,
   updateTaskController,
 } from "./task.controller.ts";
@@ -19,6 +20,7 @@ router
   .route("/")
   .get(getAllTasksController)
   .post(validate(createTaskSchema, "body"), createTaskController);
+router.route("/home-buckets").get(getHomeTaskBucketsController);
 router
   .route("/:id")
   .get(validate(taskIdSchema, "params"), getTaskController)

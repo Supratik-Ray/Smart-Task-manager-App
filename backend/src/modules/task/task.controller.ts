@@ -3,6 +3,7 @@ import {
   createTask,
   deleteTask,
   getAllTasks,
+  getHomeTaskBuckets,
   getTask,
   updateTask,
 } from "./task.service.ts";
@@ -15,7 +16,9 @@ export async function getAllTasksController(req: Request, res: Response) {
     throw new AuthError("user is unauthenticated");
   }
 
-  const tasks = await getAllTasks(req.user.id);
+  const { date } = req.query;
+
+  const tasks = await getAllTasks(req.user.id, date as string | undefined);
   sendResponse({ res, statusCode: StatusCodes.OK, data: tasks });
 }
 export async function getTaskController(req: Request, res: Response) {
@@ -58,3 +61,19 @@ export async function deleteTaskController(req: Request, res: Response) {
     data: deletedTask,
   });
 }
+
+export async function getHomeTaskBucketsController(
+  req: Request,
+  res: Response,
+) {
+  const buckets = await getHomeTaskBuckets(req.user?.id!);
+
+  sendResponse({ res, statusCode: 200, data: buckets });
+}
+
+// export async function getCalendarSummaryController(
+//   req: Request,
+//   res: Response,
+// ) {
+//   const { month, year } = req.query;
+// }
