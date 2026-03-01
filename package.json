@@ -10,6 +10,7 @@
     "build": "npm run build --workspaces",
     "dev:mobile": "npm run start -w apps/mobile",
     "dev:backend": "npm run dev -w apps/backend",
+    "build:backend": "npm run build -w @smart-task-manager/shared && npm run build -w task-manager-apis",
     "install:all": "npm install"
   },
   "repository": {
