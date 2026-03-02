@@ -2,7 +2,7 @@ import axios from "axios";
 import { getAuthToken } from "../utils/authTokenStore";
 
 export const api = axios.create({
-  baseURL: "http://192.168.29.98:5000/api/v1",
+  baseURL: "https://smart-task-manager-app-2.onrender.com/api/v1",
 });
 
 api.interceptors.request.use(async (config) => {
