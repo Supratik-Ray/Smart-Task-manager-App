@@ -10,8 +10,6 @@ Download the latest Android build from GitHub Releases:
 
 👉 **[Download APK](../../releases)**
 
-*(Upload your APK file in the Releases section for this link to work)*
-
 ---
 
 ## 🚀 Tech Stack
